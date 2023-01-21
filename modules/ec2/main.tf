@@ -29,25 +29,6 @@ resource "aws_security_group" "endava-ec2-sg" {
 }
 
 
-# # RSA Key-pair Configuration
-# resource "tls_private_key" "rsa" {
-#   algorithm = "RSA"
-#   rsa_bits  = 4096
-#   }
-
-# # Creating the key-pair using the public key from "rsa" key
-# resource "aws_key_pair" "ec2-key-pair" {
-#   key_name = "ec2-key-pair"
-#   public_key = tls_private_key.rsa.public_key_openssh
-#   }
-
-# # For later use with provisioner remote-exec - block "connection"
-# resource "local_file" "ec2-key" {
-#   content  = tls_private_key.rsa.private_key_pem
-#   filename = "ec2-key-pair"
-#   }
-
-
 # Create the launch configuration for the autoscaling group
 resource "aws_launch_configuration" "ec2" {
   image_id = "ami-0a261c0e5f51090b1"
