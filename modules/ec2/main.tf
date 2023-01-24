@@ -62,7 +62,7 @@ resource "aws_autoscaling_group" "ec2-autoscaling" {
 
 # Attach Scale-up policy to the Auto Scaling group
 resource "aws_autoscaling_policy" "scale-up-policy" {
-  name = "example-scale-up"
+  name = "scale-up-policy"
   adjustment_type = "ChangeInCapacity"
   autoscaling_group_name = aws_autoscaling_group.ec2-autoscaling.name # autoscaling group
   policy_type = "SimpleScaling"
@@ -71,7 +71,7 @@ resource "aws_autoscaling_policy" "scale-up-policy" {
 
 
 # Create the CloudWatch alarm for high CPU usage
-resource "aws_cloudwatch_metric_alarm" "example" {
+resource "aws_cloudwatch_metric_alarm" "high-cpu-usage" {
   alarm_name = "High-cpu-usage"
   alarm_description = "Sends a message when the average CPU usage is above 70% for 2 periods of 60 seconds"
   comparison_operator = "GreaterThanThreshold"
